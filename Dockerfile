@@ -4,9 +4,13 @@
 # base image
 FROM jitsi/prosody:stable-4857
 
+ADD jitsi-meet.cfg.lua /defaults/conf.d/
+ADD prosody.cfg.lua /defaults/
+
 # running required command
 RUN apt-get update \
     && apt-get install -y build-essential luarocks default-libmysqlclient-dev liblua5.2-dev \
     && luarocks install luadbi \
-    && luarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/
+    && luarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/ 
+  
 
